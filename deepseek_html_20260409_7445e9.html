@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Betegna | ቤትህን በቀላሉ አግኝ — Home, Shop & Office Property Marketplace</title>
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Lightbox -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', 'Outfit', sans-serif;
+      background: linear-gradient(135deg, #f5f7fa 0%, #e9eef3 100%);
+      overflow-x: hidden;
+    }
+
+    .betegna-app {
+      max-width: 1400px;
+      margin: 0 auto;
+      background: #ffffff;
+      min-height: 100vh;
+      box-shadow: 0 0 40px rgba(0, 0, 0, 0.05);
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Horizontal Header */
+    .main-header {
+      background: linear-gradient(135deg, #0a2f22 0%, #1a543f 100%);
+      color: white;
+      padding: 0.8rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .logo {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 800;
+      font-size: 1.8rem;
+      letter-spacing: -0.5px;
+      background: linear-gradient(135deg, #ffffff 0%, #f5b042 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      white-space: nowrap;
+    }
+    .logo span { color: #f5b042; background: none; }
+    .logo small { font-size: 0.65rem; font-weight: 500; display: block; color: rgba(255,255,255,0.8); }
+
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .nav-link {
+      color: white;
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 600;
+      padding: 0.5rem 1.2rem;
+      border-radius: 50px;
+      transition: all 0.3s;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(255,255,255,0.08);
+      white-space: nowrap;
+    }
+    .nav-link:hover, .nav-link.active-page {
+      background: #f5b042;
+      color: #0a2f22;
+      transform: translateY(-2px);
+    }
+    .nav-link.login-btn {
+      background: #f5b042;
+      color: #0a2f22;
+    }
+    .nav-icons {
+      display: flex;
+      gap: 0.8rem;
+      align-items: center;
+    }
+    .nav-icons i {
+      font-size: 1.3rem;
+      cursor: pointer;
+      background: rgba(255,255,255,0.15);
+      padding: 0.5rem;
+      border-radius: 50%;
+      transition: all 0.3s ease;
+    }
+    .nav-icons i:hover {
+      transform: translateY(-3px);
+      background: #f5b042;
+      color: #0a2f22;
+    }
+
+    .main-content {
+      padding: 2rem;
+      max-width: 1300px;
+      margin: 0 auto;
+      width: 100%;
+      flex: 1;
+    }
+
+    /* Category Tabs - Home, Shop, Office */
+    .category-tabs {
+      display: flex;
+      background: #f0f4f9;
+      border-radius: 60px;
+      padding: 0.3rem;
+      gap: 0.3rem;
+      max-width: 500px;
+      margin-bottom: 1.5rem;
+    }
+    .category-btn {
+      flex: 1;
+      padding: 0.8rem 1.2rem;
+      font-weight: 700;
+      border-radius: 50px;
+      border: none;
+      background: transparent;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+    .category-btn.active {
+      background: white;
+      color: #0e3b2c;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    }
+    .category-btn i { font-size: 1.1rem; }
+
+    /* Rent/Sale Tabs */
+    .tabs {
+      display: flex;
+      background: #f0f4f9;
+      border-radius: 60px;
+      padding: 0.3rem;
+      gap: 0.3rem;
+      max-width: 300px;
+      margin-bottom: 2rem;
+    }
+    .tab-btn {
+      flex: 1;
+      padding: 0.7rem 1.2rem;
+      font-weight: 700;
+      border-radius: 50px;
+      border: none;
+      background: transparent;
+      font-size: 0.9rem;
+      cursor: pointer;
+    }
+    .tab-btn.active {
+      background: white;
+      color: #0e3b2c;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+
+    /* Search Section */
+    .search-section {
+      margin-bottom: 2rem;
+    }
+    .search-box {
+      display: flex;
+      background: white;
+      border: 2px solid #e2e8f0;
+      border-radius: 60px;
+      padding: 0.8rem 1.5rem;
+      gap: 1rem;
+      transition: all 0.3s;
+    }
+    .search-box:focus-within {
+      border-color: #f5b042;
+      box-shadow: 0 0 0 4px rgba(245,176,66,0.1);
+    }
+    .search-box input {
+      flex: 1;
+      border: none;
+      outline: none;
+      font-size: 1rem;
+      background: transparent;
+      font-weight: 500;
+    }
+    .search-box i { color: #f5b042; font-size: 1.2rem; }
+
+    .filter-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin-top: 1rem;
+    }
+    .chip {
+      background: #f0f4f9;
+      padding: 0.5rem 1.3rem;
+      border-radius: 40px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .chip:hover { transform: translateY(-2px); background: #e4eaf2; }
+    .chip.active { background: #0e3b2c; color: white; }
+
+    /* Property Grid */
+    .listings {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+    .property-card {
+      background: white;
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
+      transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.2);
+      border: 1px solid #eef2f6;
+    }
+    .property-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 25px 45px rgba(0, 0, 0, 0.12);
+    }
+    .img-slider {
+      position: relative;
+      height: 240px;
+      background: #d9e2ec;
+      overflow: hidden;
+    }
+    .slider-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s;
+    }
+    .property-card:hover .slider-img { transform: scale(1.05); }
+    .verified-badge {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      background: #0e3b2c;
+      color: white;
+      font-size: 0.75rem;
+      padding: 0.3rem 1rem;
+      border-radius: 40px;
+      font-weight: 700;
+      z-index: 2;
+    }
+    .category-badge {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: #f5b042;
+      color: #0a2f22;
+      font-size: 0.7rem;
+      padding: 0.3rem 0.9rem;
+      border-radius: 40px;
+      font-weight: 700;
+      z-index: 2;
+    }
+    .slider-nav span {
+      position: absolute;
+      top: 50%;
+      background: rgba(0,0,0,0.6);
+      color: white;
+      padding: 8px 14px;
+      border-radius: 40px;
+      cursor: pointer;
+      transform: translateY(-50%);
+      transition: 0.2s;
+    }
+    .slider-nav span:hover { background: #f5b042; color: #0a2f22; }
+    .slider-nav .prev-img { left: 12px; }
+    .slider-nav .next-img { right: 12px; }
+    .card-content { padding: 1.5rem; }
+    .price {
+      font-weight: 800;
+      font-size: 1.5rem;
+      color: #0e3b2c;
+    }
+    .title { font-weight: 700; font-size: 1.1rem; margin: 0.5rem 0; }
+    .location { font-size: 0.85rem; color: #5e727f; display: flex; align-items: center; gap: 0.3rem; margin: 0.5rem 0; }
+    .amenities { display: flex; flex-wrap: wrap; gap: 0.6rem; margin: 1rem 0; }
+    .amenity-tag { background: #f0f4f9; padding: 0.3rem 1rem; border-radius: 30px; font-size: 0.7rem; font-weight: 600; }
+    .card-actions { display: flex; gap: 0.8rem; margin-top: 1rem; }
+    .card-actions button {
+      flex: 1;
+      padding: 0.7rem;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      cursor: pointer;
+      border: none;
+      transition: all 0.2s;
+    }
+    .btn-chat { background: #eef2ff; border: 1px solid #cbdbe0; }
+    .btn-chat:hover { background: #e0e8fc; transform: translateY(-2px); }
+    .btn-visit { background: #0e3b2c; color: white; }
+    .btn-visit:hover { background: #1c5e46; transform: translateY(-2px); }
+    .btn-save { background: #fff3e0; border: 1px solid #f5d9a8; }
+    .btn-save:hover { background: #ffe6bf; transform: translateY(-2px); }
+
+    .dashboard-panel {
+      background: #f8fafd;
+      border-radius: 28px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .tenant-item {
+      background: white;
+      border-radius: 20px;
+      padding: 1rem;
+      margin-bottom: 0.8rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .info-section {
+      padding: 2rem;
+      background: white;
+      border-radius: 32px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+      margin-bottom: 2rem;
+    }
+    .hidden-section { display: none; }
+    .about-hero { text-align: center; margin-bottom: 2rem; }
+    .about-hero i { font-size: 4rem; color: #f5b042; background: #0e3b2c; padding: 1.2rem; border-radius: 80px; margin-bottom: 1rem; }
+    .about-hero h2 { font-size: 2rem; color: #0e3b2c; }
+    .about-stats { display: flex; justify-content: space-around; gap: 1.5rem; margin: 2rem 0; }
+    .stat-bubble { text-align: center; background: #f8fafd; padding: 1.5rem; border-radius: 28px; flex: 1; }
+    .stat-bubble .number { font-size: 2rem; font-weight: 800; color: #f5b042; }
+    .services-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.2rem; }
+    .service-card { background: #f8fafd; border-radius: 24px; padding: 1.2rem; display: flex; align-items: center; gap: 1rem; }
+    .service-icon { width: 60px; height: 60px; background: #0e3b2c; border-radius: 30px; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; color: #f5b042; }
+    .contact-info { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
+    .contact-item { display: flex; align-items: center; gap: 1rem; background: #f8fafd; padding: 1rem; border-radius: 24px; }
+    .contact-item i { width: 50px; height: 50px; background: #0e3b2c; border-radius: 30px; display: flex; align-items: center; justify-content: center; color: #f5b042; font-size: 1.3rem; }
+    .learning-tip { background: #fef5e3; border-radius: 24px; padding: 1rem; font-size: 0.85rem; border-left: 5px solid #f5b042; margin-top: 1rem; }
+
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.7);
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      backdrop-filter: blur(5px);
+    }
+    .modal-content {
+      background: white;
+      width: 90%;
+      max-width: 550px;
+      border-radius: 36px;
+      padding: 2rem;
+      max-height: 85vh;
+      overflow-y: auto;
+    }
+    .form-group { margin-bottom: 1.2rem; }
+    .form-group label { font-weight: 700; font-size: 0.85rem; }
+    input, select, textarea {
+      width: 100%;
+      padding: 0.9rem;
+      border-radius: 28px;
+      border: 1px solid #cfdfe8;
+      margin-top: 0.3rem;
+      font-size: 0.95rem;
+    }
+    .submit-btn {
+      background: #0e3b2c;
+      color: white;
+      width: 100%;
+      padding: 1rem;
+      border-radius: 50px;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .submit-btn:hover { background: #1c5e46; transform: translateY(-2px); }
+    .toast-msg {
+      position: fixed;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #1e2f3e;
+      color: white;
+      padding: 0.8rem 1.8rem;
+      border-radius: 50px;
+      font-size: 0.9rem;
+      z-index: 1200;
+    }
+
+    /* Footer */
+    .footer {
+      background: linear-gradient(135deg, #0a2f22 0%, #0e3b2c 100%);
+      color: #e0e7e4;
+      padding: 2rem 2rem 1rem;
+      margin-top: 2rem;
+    }
+    .footer-content {
+      max-width: 1300px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+    .footer-col h4 { color: #f5b042; font-size: 1.1rem; margin-bottom: 1rem; }
+    .footer-col p { font-size: 0.85rem; line-height: 1.6; opacity: 0.9; }
+    .footer-links { list-style: none; }
+    .footer-links li { margin-bottom: 0.5rem; }
+    .footer-links a { color: #e0e7e4; text-decoration: none; font-size: 0.85rem; transition: 0.2s; display: inline-flex; align-items: center; gap: 0.5rem; }
+    .footer-links a:hover { color: #f5b042; transform: translateX(5px); }
+    .social-icons { display: flex; gap: 1rem; margin-top: 1rem; }
+    .social-icons a { color: white; background: rgba(255,255,255,0.1); width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: 0.2s; }
+    .social-icons a:hover { background: #f5b042; color: #0a2f22; transform: translateY(-3px); }
+    .footer-bottom { text-align: center; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.1); font-size: 0.75rem; opacity: 0.7; }
+
+    @media (max-width: 900px) {
+      .main-header { flex-direction: column; padding: 1rem; }
+      .nav-menu { justify-content: center; }
+      .main-content { padding: 1rem; }
+      .listings { grid-template-columns: 1fr; }
+      .about-stats { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <div class="betegna-app">
+    <div class="main-header">
+      <div class="logo">Betegna<span> ቤትህ</span><small>Home · Shop · Office</small></div>
+      <div class="nav-menu">
+        <span class="nav-link" data-page="home"><i class="fas fa-home"></i> Home</span>
+        <span class="nav-link" data-page="about"><i class="fas fa-info-circle"></i> About</span>
+        <span class="nav-link" data-page="services"><i class="fas fa-concierge-bell"></i> Services</span>
+        <span class="nav-link" data-page="contact"><i class="fas fa-envelope"></i> Contact</span>
+        <span class="nav-link login-btn" id="loginRegisterBtn"><i class="fas fa-user-circle"></i> Login</span>
+      </div>
+      <div class="nav-icons">
+        <i class="fas fa-plus-circle" id="postPropertyBtn" title="Post listing"></i>
+        <i class="fas fa-chart-simple" id="dashboardBtn" title="Landlord Manager"></i>
+        <i class="fas fa-heart" id="savedBtn" title="Favorites"></i>
+      </div>
+    </div>
+
+    <div class="main-content">
+      <div id="homePage">
+        <!-- Category Tabs: Home, Shop, Office -->
+        <div class="category-tabs">
+          <button class="category-btn active" data-category="home"><i class="fas fa-home"></i> 🏠 Homes / Apartments</button>
+          <button class="category-btn" data-category="shop"><i class="fas fa-store"></i> 🏪 Shops / Retail</button>
+          <button class="category-btn" data-category="office"><i class="fas fa-building"></i> 🏢 Offices / Commercial</button>
+        </div>
+        <!-- Rent/Sale Tabs -->
+        <div class="tabs">
+          <button class="tab-btn active" data-type="rent">🏘️ For Rent</button>
+          <button class="tab-btn" data-type="sale">🏡 For Sale</button>
+        </div>
+        <div class="search-section">
+          <div class="search-box">
+            <i class="fas fa-search"></i>
+            <input type="text" id="searchInput" placeholder="Search by kebele, landmark, or title...">
+          </div>
+          <div class="filter-row" id="filterChips">
+            <span class="chip" data-filter="kebele:Bole">📍 Bole</span>
+            <span class="chip" data-filter="kebele:Kazanchis">📍 Kazanchis</span>
+            <span class="chip" data-filter="amenity:water">💧 Water</span>
+            <span class="chip" data-filter="amenity:security">🛡️ Security</span>
+            <span class="chip" data-filter="price:low">💰 Price: Low to High</span>
+          </div>
+        </div>
+        <div id="listingsContainer" class="listings"></div>
+        <div id="landlordPanel" style="display: none;">
+          <div class="dashboard-panel">
+            <h3><i class="fas fa-landmark"></i> Landlord Manager</h3>
+            <div style="display: flex; gap: 1rem; margin: 1rem 0;">
+              <div class="stat-card"><i class="fas fa-building"></i> <span id="totalPropsCount">0</span> Listings</div>
+              <div class="stat-card"><i class="fas fa-calendar-check"></i> <span id="totalVisitsCount">0</span> Visits</div>
+            </div>
+            <div id="tenantList"></div>
+            <div style="margin-top: 1rem;">
+              <input type="text" id="tenantName" placeholder="Tenant name" style="width:48%;">
+              <input type="date" id="dueDate" style="width:48%;">
+              <button id="addTenantBtn" style="margin-top:0.8rem; background:#0e3b2c; color:white; border:none; padding:0.8rem; border-radius:50px; width:100%; font-weight:700;">+ Add Tenant</button>
+            </div>
+          </div>
+        </div>
+        <div class="learning-tip">
+          <i class="fas fa-graduation-cap"></i> <strong>Pro Tip:</strong> Filter by category (Home/Shop/Office) to find exactly what you need. Verified listings guarantee authenticity!
+        </div>
+      </div>
+
+      <div id="aboutPage" class="info-section hidden-section">
+        <div class="about-hero"><i class="fas fa-ethiopia"></i><h2>Betegna <span style="color:#f5b042;">ቤትህ</span></h2><p>Ethiopia's Most Trusted Property Ecosystem</p></div>
+        <p style="line-height:1.6; margin-bottom:1.5rem;">Founded in 2025, Betegna bridges the gap between property seekers and owners through technology, transparency, and local expertise. We specialize in residential homes, retail shops, and commercial offices across Addis Ababa.</p>
+        <div class="about-stats"><div class="stat-bubble"><div class="number">2,000+</div><div>Active Listings</div></div><div class="stat-bubble"><div class="number">5,000+</div><div>Happy Clients</div></div><div class="stat-bubble"><div class="number">99%</div><div>Satisfaction</div></div></div>
+      </div>
+
+      <div id="servicesPage" class="info-section hidden-section">
+        <div class="about-hero"><i class="fas fa-cogs"></i><h2>Premium Services</h2><p>Everything you need</p></div>
+        <div class="services-grid">
+          <div class="service-card"><div class="service-icon"><i class="fas fa-home"></i></div><div><h4>Home Listings</h4><p>Apartments, villas, and family homes</p></div></div>
+          <div class="service-card"><div class="service-icon"><i class="fas fa-store"></i></div><div><h4>Shop Listings</h4><p>Retail spaces, storefronts, and kiosks</p></div></div>
+          <div class="service-card"><div class="service-icon"><i class="fas fa-building"></i></div><div><h4>Office Spaces</h4><p>Commercial offices, coworking spaces</p></div></div>
+          <div class="service-card"><div class="service-icon"><i class="fas fa-chart-line"></i></div><div><h4>Analytics Dashboard</h4><p>Track views and inquiries</p></div></div>
+        </div>
+      </div>
+
+      <div id="contactPage" class="info-section hidden-section">
+        <div class="about-hero"><i class="fas fa-headset"></i><h2>Get In Touch</h2><p>We're here 24/7</p></div>
+        <div class="contact-info">
+          <div class="contact-item"><i class="fas fa-phone-alt"></i><div><h4>Phone</h4><p>+251-911-123456</p></div></div>
+          <div class="contact-item"><i class="fas fa-envelope"></i><div><h4>Email</h4><p>hello@betegna.com</p></div></div>
+          <div class="contact-item"><i class="fas fa-map-marker-alt"></i><div><h4>Office</h4><p>Bole, Addis Ababa</p></div></div>
+        </div>
+        <div style="background:#f8fafd; border-radius:28px; padding:1.5rem;"><h4 style="margin-bottom:1rem;">Send a message</h4>
+          <input type="text" id="contactName" placeholder="Your name" style="margin-bottom:0.8rem;">
+          <input type="email" id="contactEmail" placeholder="Email" style="margin-bottom:0.8rem;">
+          <textarea id="contactMsg" rows="4" placeholder="Message"></textarea>
+          <button id="sendContactBtn" class="submit-btn" style="margin-top:1rem;">Send Message</button>
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <div class="footer-content">
+        <div class="footer-col"><h4>Betegna</h4><p>Ethiopia's #1 property marketplace for homes, shops, and offices.</p><div class="social-icons"><a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-telegram"></i></a><a href="#"><i class="fab fa-instagram"></i></a></div></div>
+        <div class="footer-col"><h4>Quick Links</h4><ul class="footer-links"><li><a href="#" data-page="home"><i class="fas fa-chevron-right"></i> Home</a></li><li><a href="#" data-page="about"><i class="fas fa-chevron-right"></i> About</a></li><li><a href="#" data-page="services"><i class="fas fa-chevron-right"></i> Services</a></li><li><a href="#" data-page="contact"><i class="fas fa-chevron-right"></i> Contact</a></li></ul></div>
+        <div class="footer-col"><h4>Categories</h4><ul class="footer-links"><li><i class="fas fa-home"></i> Homes</li><li><i class="fas fa-store"></i> Shops</li><li><i class="fas fa-building"></i> Offices</li></ul></div>
+        <div class="footer-col"><h4>Contact</h4><ul class="footer-links"><li><i class="fas fa-phone"></i> +251-911-123456</li><li><i class="fas fa-envelope"></i> hello@betegna.com</li></ul></div>
+      </div>
+      <div class="footer-bottom"><p>&copy; 2025 Betegna Marketplace. Made with <i class="fas fa-heart" style="color:#f5b042;"></i> in Ethiopia</p></div>
+    </footer>
+  </div>
+
+  <!-- Modals -->
+  <div id="authModal" class="modal"><div class="modal-content"><span style="float:right; font-size:28px; cursor:pointer;" id="closeAuthBtn">&times;</span><h3>Welcome to Betegna</h3><div class="form-group"><label>Full Name</label><input id="authName" placeholder="Selam Tesfaye"></div><div class="form-group"><label>Phone</label><input id="authEmail" placeholder="+2519xxxxxxxx"></div><div class="form-group"><label>Password</label><input id="authPassword" type="password"></div><button id="authSubmitBtn" class="submit-btn">Continue</button></div></div>
+  <div id="postModal" class="modal"><div class="modal-content"><span style="float:right; font-size:28px; cursor:pointer;" id="closeModalBtn">&times;</span><h3>📢 List New Property</h3><div class="form-group"><label>Category</label><select id="modalCategory"><option value="home">🏠 Home / Apartment</option><option value="shop">🏪 Shop / Retail</option><option value="office">🏢 Office / Commercial</option></select></div><div class="form-group"><label>Type</label><select id="modalType"><option value="rent">For Rent</option><option value="sale">For Sale</option></select></div><div class="form-group"><label>Title</label><input id="modalTitle" placeholder="Modern 2BR in Bole"></div><div class="form-group"><label>Price (ETB)</label><input id="modalPrice" placeholder="18500"></div><div class="form-group"><label>Location</label><input id="modalLocation" placeholder="Bole, near Edna Mall"></div><div class="form-group"><label>Amenities</label><input id="modalAmenities" placeholder="water, parking, wifi"></div><div class="form-group"><label>Description</label><textarea id="modalDesc" rows="3"></textarea></div><div class="form-group"><label>Images</label><input type="file" id="imageUpload" multiple accept="image/*"></div><div id="imagePreviewContainer" style="display:flex; gap:10px; flex-wrap:wrap;"></div><button id="submitListingBtn" class="submit-btn">Publish</button></div></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox-plus-jquery.min.js"></script>
+  <script>
+    const demoImages = ["https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=600&h=400&fit=crop","https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=600&h=400&fit=crop","https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=600&h=400&fit=crop","https://images.unsplash.com/photo-1560185893-a55cbc8c57e8?w=600&h=400&fit=crop","https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=600&h=400&fit=crop","https://images.unsplash.com/photo-1484154218962-a197022b5858?w=600&h=400&fit=crop"];
+    
+    // 25+ properties across categories
+    let listings = [
+      { id: "p1", category: "home", type: "rent", title: "Sunny 2BR + Balcony", price: 18500, location: "Bole, behind Edna Mall", kebele: "Bole", amenities: ["water","24/7 security","parking"], verified: true, images: [demoImages[0], demoImages[1]], ownerId: "u1" },
+      { id: "p2", category: "home", type: "rent", title: "Cozy Studio Kazanchis", price: 8500, location: "Kazanchis, near UNECA", kebele: "Kazanchis", amenities: ["water","wifi"], verified: false, images: [demoImages[2]], ownerId: "u2" },
+      { id: "p3", category: "home", type: "sale", title: "4BR Villa with Garden", price: 7500000, location: "CMC, near Ayat", kebele: "CMC", amenities: ["garden","parking","security"], verified: true, images: [demoImages[3], demoImages[4]], ownerId: "u3" },
+      { id: "p4", category: "home", type: "rent", title: "Budget 1BR Megenagna", price: 5500, location: "Megenagna, behind stadium", kebele: "Megenagna", amenities: ["water","security"], verified: true, images: [demoImages[5]], ownerId: "u1" },
+      { id: "p5", category: "shop", type: "rent", title: "Prime Retail Shop Bole", price: 35000, location: "Bole, near Rwanda Embassy", kebele: "Bole", amenities: ["high traffic","parking","glass front"], verified: true, images: [demoImages[0], demoImages[2]], ownerId: "u2" },
+      { id: "p6", category: "shop", type: "sale", title: "Corner Shop Kazanchis", price: 4500000, location: "Kazanchis, near UNECA", kebele: "Kazanchis", amenities: ["prime location","storage"], verified: false, images: [demoImages[1]], ownerId: "u3" },
+      { id: "p7", category: "shop", type: "rent", title: "Small Kiosk Megenagna", price: 12000, location: "Megenagna, bus terminal", kebele: "Megenagna", amenities: ["electricity","water"], verified: true, images: [demoImages[4]], ownerId: "u1" },
+      { id: "p8", category: "office", type: "rent", title: "Modern Office Bole", price: 28000, location: "Bole, near Atlas", kebele: "Bole", amenities: ["conference room","wifi","parking"], verified: true, images: [demoImages[3], demoImages[5]], ownerId: "u2" },
+      { id: "p9", category: "office", type: "sale", title: "Commercial Building Piassa", price: 18500000, location: "Piassa, near Meskel Square", kebele: "Piassa", amenities: ["elevator","security","prime"], verified: true, images: [demoImages[0]], ownerId: "u3" },
+      { id: "p10", category: "office", type: "rent", title: "Coworking Space Kazanchis", price: 15000, location: "Kazanchis, behind Bole", kebele: "Kazanchis", amenities: ["wifi","furnished"], verified: false, images: [demoImages[2]], ownerId: "u1" },
+      { id: "p11", category: "home", type: "rent", title: "Luxury 3BR + Terrace", price: 42000, location: "Bole, Wollo Sefer", kebele: "Bole", amenities: ["water","parking","gym","security"], verified: true, images: [demoImages[1], demoImages[3]], ownerId: "u2" },
+      { id: "p12", category: "home", type: "sale", title: "Family House with Yard", price: 9200000, location: "CMC, near Woreda 9", kebele: "CMC", amenities: ["yard","parking","fence"], verified: true, images: [demoImages[4]], ownerId: "u3" },
+      { id: "p13", category: "shop", type: "rent", title: "Supermarket Space", price: 65000, location: "Bole, Edna Mall area", kebele: "Bole", amenities: ["high traffic","loading zone"], verified: true, images: [demoImages[5], demoImages[0]], ownerId: "u1" },
+      { id: "p14", category: "office", type: "rent", title: "Executive Office Suite", price: 45000, location: "Bole, Friendship area", kebele: "Bole", amenities: ["furnished","meeting room","reception"], verified: true, images: [demoImages[2]], ownerId: "u2" }
+    ];
+
+    let currentUser = { id: "guest", name: "Guest", loggedIn: false };
+    let tenants = [{ id: "t1", name: "Abebe K.", property: "Sunny 2BR Bole", dueDate: "2026-06-20", paidStatus: "pending" }];
+    let visitHistory = JSON.parse(localStorage.getItem("betegna_visits") || "[]");
+    let favorites = JSON.parse(localStorage.getItem("betegna_favorites") || "[]");
+    let activeCategory = "home", activeType = "rent", searchQuery = "", activeKebele = null, activeAmenity = null, lowToHigh = false;
+
+    function showToast(msg) { let t = document.createElement("div"); t.className = "toast-msg"; t.innerText = msg; document.body.appendChild(t); setTimeout(()=>t.remove(), 2600); }
+    function saveFav() { localStorage.setItem("betegna_favorites", JSON.stringify(favorites)); }
+    function isFav(id) { return favorites.includes(id); }
+    function toggleFavorite(id) { if (favorites.includes(id)) favorites = favorites.filter(f => f !== id); else favorites.push(id); saveFav(); renderListings(); showToast(favorites.includes(id) ? "❤️ Saved" : "Removed"); }
+    function bookVisit(id) { if(!currentUser.loggedIn) { showToast("Please login first!"); return; } visitHistory.push({ id: Date.now(), propertyId: id }); localStorage.setItem("betegna_visits", JSON.stringify(visitHistory)); showToast("📅 Visit request sent!"); updateDashboardStats(); }
+    function updateDashboardStats() { document.getElementById("totalPropsCount") && (document.getElementById("totalPropsCount").innerText = listings.filter(l => l.ownerId === currentUser.id).length); document.getElementById("totalVisitsCount") && (document.getElementById("totalVisitsCount").innerText = visitHistory.length); }
+    
+    function renderListings() {
+      let filtered = listings.filter(l => l.category === activeCategory && l.type === activeType);
+      if(searchQuery) { const q = searchQuery.toLowerCase(); filtered = filtered.filter(l => l.title.toLowerCase().includes(q) || l.location.toLowerCase().includes(q) || l.kebele.toLowerCase().includes(q)); }
+      if(activeKebele) filtered = filtered.filter(l => l.kebele === activeKebele);
+      if(activeAmenity) filtered = filtered.filter(l => l.amenities.some(a => a.toLowerCase().includes(activeAmenity)));
+      if(lowToHigh) filtered.sort((a,b) => a.price - b.price);
+      const container = document.getElementById("listingsContainer");
+      if(!filtered.length) { container.innerHTML = `<div style="text-align:center; padding:3rem;">🏠 No properties found in this category. Adjust filters or post a listing.</div>`; return; }
+      container.innerHTML = filtered.map(prop => {
+        const categoryIcon = prop.category === 'home' ? '🏠' : (prop.category === 'shop' ? '🏪' : '🏢');
+        const categoryName = prop.category === 'home' ? 'Home' : (prop.category === 'shop' ? 'Shop' : 'Office');
+        return `<div class="property-card"><div class="img-slider">${prop.verified ? `<div class="verified-badge"><i class="fas fa-shield-alt"></i> Verified</div>` : `<div class="verified-badge" style="background:#b87c4a;">Pending</div>`}<div class="category-badge">${categoryIcon} ${categoryName}</div><img src="${prop.images[0]}" class="slider-img" id="img-${prop.id}"><div class="slider-nav"><span class="prev-img" data-id="${prop.id}" data-imgs='${JSON.stringify(prop.images)}'><i class="fas fa-chevron-left"></i></span><span class="next-img" data-id="${prop.id}" data-imgs='${JSON.stringify(prop.images)}'><i class="fas fa-chevron-right"></i></span></div></div><div class="card-content"><div class="price">${prop.type === "rent" ? `${prop.price.toLocaleString()} ETB/ወር` : `${prop.price.toLocaleString()} ETB`}</div><div class="title">${prop.title}</div><div class="location"><i class="fas fa-map-pin"></i> ${prop.location}</div><div class="amenities">${prop.amenities.map(a=>`<span class="amenity-tag">${a}</span>`).join("")}</div><div class="card-actions"><button class="btn-chat" data-id="${prop.id}"><i class="fab fa-telegram"></i> Chat</button><button class="btn-visit" data-id="${prop.id}"><i class="fas fa-calendar-week"></i> Visit</button><button class="btn-save save-btn" data-id="${prop.id}"><i class="fas ${isFav(prop.id) ? 'fa-heart' : 'fa-heart-o'}"></i> Save</button></div></div></div>`;
+      }).join("");
+      document.querySelectorAll(".prev-img").forEach(btn => btn.addEventListener("click", (e) => { e.stopPropagation(); const imgs = JSON.parse(btn.getAttribute("data-imgs")); const imgEl = document.getElementById(`img-${btn.getAttribute("data-id")}`); let idx = imgs.findIndex(i => i === imgEl.src); idx = (idx - 1 + imgs.length) % imgs.length; imgEl.src = imgs[idx]; }));
+      document.querySelectorAll(".next-img").forEach(btn => btn.addEventListener("click", (e) => { e.stopPropagation(); const imgs = JSON.parse(btn.getAttribute("data-imgs")); const imgEl = document.getElementById(`img-${btn.getAttribute("data-id")}`); let idx = imgs.findIndex(i => i === imgEl.src); idx = (idx + 1) % imgs.length; imgEl.src = imgs[idx]; }));
+      document.querySelectorAll(".btn-chat").forEach(btn => btn.onclick = () => showToast("💬 Chat with owner (demo)"));
+      document.querySelectorAll(".btn-visit").forEach(btn => btn.onclick = () => bookVisit(btn.getAttribute("data-id")));
+      document.querySelectorAll(".save-btn").forEach(btn => btn.onclick = () => toggleFavorite(btn.getAttribute("data-id")));
+    }
+
+    function renderTenantManager() { const div = document.getElementById("tenantList"); if(!div) return; div.innerHTML = tenants.map(t => `<div class="tenant-item"><div><strong>${t.name}</strong><br><small>${t.property} · Due: ${t.dueDate}</small></div><div><span style="color:${t.paidStatus==='paid'?'#2b7a3e':'#c26b1b'}">${t.paidStatus==='paid'?'✓ Paid':'⏳ Pending'}</span><button class="markPaidBtn" data-id="${t.id}" style="background:#e9ecef; border:none; border-radius:30px; padding:5px 15px;">Mark Paid</button></div></div>`).join(""); document.querySelectorAll(".markPaidBtn").forEach(btn => btn.addEventListener("click", () => { const tenant = tenants.find(t=>t.id===btn.getAttribute("data-id")); if(tenant) { tenant.paidStatus = "paid"; renderTenantManager(); showToast(`✅ ${tenant.name} rent marked paid.`); } })); }
+
+    function showPage(pageId) { ["homePage","aboutPage","servicesPage","contactPage"].forEach(p => document.getElementById(p).classList.add("hidden-section")); document.getElementById(pageId).classList.remove("hidden-section"); }
+    document.querySelectorAll(".nav-link[data-page]").forEach(link => link.addEventListener("click", () => showPage(link.getAttribute("data-page") + "Page")));
+    document.querySelectorAll(".footer-links a[data-page]").forEach(link => link.addEventListener("click", (e) => { e.preventDefault(); showPage(link.getAttribute("data-page") + "Page"); }));
+    
+    document.getElementById("loginRegisterBtn").onclick = () => document.getElementById("authModal").style.display = "flex";
+    document.getElementById("closeAuthBtn").onclick = () => document.getElementById("authModal").style.display = "none";
+    document.getElementById("authSubmitBtn").onclick = () => { const name = document.getElementById("authName").value; if(name) { currentUser = { id: "user_"+Date.now(), name: name, loggedIn: true }; showToast(`Welcome ${name}!`); document.getElementById("authModal").style.display = "none"; } else showToast("Enter your name"); };
+    document.getElementById("sendContactBtn")?.addEventListener("click", () => { const name = document.getElementById("contactName").value; if(name) showToast("📧 Message sent! We'll reply within 24h."); else showToast("Please fill your name."); });
+    
+    let uploadedImages = [];
+    document.getElementById("imageUpload")?.addEventListener("change", function(e) { uploadedImages = []; const preview = document.getElementById("imagePreviewContainer"); preview.innerHTML = ""; Array.from(e.target.files).forEach(f => { const reader = new FileReader(); reader.onload = ev => { uploadedImages.push(ev.target.result); const img = document.createElement("img"); img.src = ev.target.result; img.style.width = "80px"; img.style.height = "80px"; img.style.borderRadius = "16px"; img.style.objectFit = "cover"; preview.appendChild(img); }; reader.readAsDataURL(f); }); });
+    function addNewListing(data) { const newId = "prop_"+Date.now(); listings.unshift({ id: newId, category: data.category, type: data.type, title: data.title, price: Number(data.price), location: data.location, kebele: data.location.split(",")[0]||"Addis", amenities: data.amenities.split(",").map(s=>s.trim()), description: data.desc, verified: false, images: uploadedImages.length ? uploadedImages : [demoImages[0]], ownerId: currentUser.id }); renderListings(); showToast("✅ Listing posted!"); uploadedImages = []; document.getElementById("imagePreviewContainer").innerHTML = ""; updateDashboardStats(); }
+    
+    document.addEventListener("DOMContentLoaded", () => {
+      renderListings(); updateDashboardStats();
+      document.querySelectorAll(".category-btn").forEach(btn => btn.addEventListener("click", () => { document.querySelectorAll(".category-btn").forEach(b=>b.classList.remove("active")); btn.classList.add("active"); activeCategory = btn.getAttribute("data-category"); renderListings(); }));
+      document.querySelectorAll(".tab-btn").forEach(btn => btn.addEventListener("click", () => { document.querySelectorAll(".tab-btn").forEach(b=>b.classList.remove("active")); btn.classList.add("active"); activeType = btn.getAttribute("data-type"); renderListings(); }));
+      document.getElementById("searchInput").addEventListener("input", (e) => { searchQuery = e.target.value; renderListings(); });
+      document.querySelectorAll(".chip").forEach(chip => chip.addEventListener("click", () => { const val = chip.getAttribute("data-filter"); if(val.startsWith("kebele:")) { activeKebele = val.split(":")[1]; activeAmenity = null; lowToHigh = false; } else if(val.startsWith("amenity:")) { activeAmenity = val.split(":")[1]; activeKebele = null; lowToHigh = false; } else if(val === "price:low") { lowToHigh = !lowToHigh; activeKebele = null; activeAmenity = null; } renderListings(); }));
+      const modal = document.getElementById("postModal"); document.getElementById("postPropertyBtn").onclick = () => modal.style.display = "flex"; document.getElementById("closeModalBtn").onclick = () => modal.style.display = "none"; window.onclick = (e) => { if(e.target === modal) modal.style.display = "none"; if(e.target === document.getElementById("authModal")) document.getElementById("authModal").style.display = "none"; };
+      document.getElementById("submitListingBtn").addEventListener("click", () => { const category = document.getElementById("modalCategory").value, type = document.getElementById("modalType").value, title = document.getElementById("modalTitle").value, price = document.getElementById("modalPrice").value, loc = document.getElementById("modalLocation").value, amens = document.getElementById("modalAmenities").value, desc = document.getElementById("modalDesc").value; if(!title||!price||!loc) { showToast("Fill required fields"); return; } addNewListing({ category, type, title, price, location: loc, amenities: amens||"standard", desc }); modal.style.display = "none"; });
+      let panelVis = false; document.getElementById("dashboardBtn").addEventListener("click", () => { const panel = document.getElementById("landlordPanel"); panelVis = !panelVis; panel.style.display = panelVis ? "block" : "none"; if(panelVis) { renderTenantManager(); updateDashboardStats(); } });
+      document.getElementById("addTenantBtn")?.addEventListener("click", () => { const name = document.getElementById("tenantName").value, due = document.getElementById("dueDate").value; if(!name||!due) { showToast("Enter tenant name & due date"); return; } tenants.push({ id: Date.now().toString(), name, property: "Your Property", dueDate: due, paidStatus: "pending" }); renderTenantManager(); showToast(`Tenant ${name} added.`); });
+      document.getElementById("savedBtn")?.addEventListener("click", () => { const count = listings.filter(l => favorites.includes(l.id)).length; showToast(count ? `❤️ ${count} saved properties.` : "No saved listings."); });
+      setInterval(() => { const today = new Date().toISOString().slice(0,10); tenants.forEach(t => { if(t.dueDate === today && t.paidStatus !== "paid") showToast(`📱 SMS: Rent due today for ${t.name}.`); }); }, 30000);
+    });
+  </script>
+</body>
+</html>
